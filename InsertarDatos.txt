@@ -1,0 +1,28 @@
+INSERT INTO Pelicula (Titulo, Genero, AñoLanzamiento, Clasificación, Duracion, PrecioVenta, Stock) VALUES
+('El Gran Escape', 'Acción', 2020, 'PG-13', 120, 19.99, 50),
+('Amor en Tiempos de Guerra', 'Romance', 2018, 'R', 135, 14.99, 30),
+('La Aventura Espacial', 'Ciencia Ficción', 2022, 'PG', 150, 24.99, 20),
+('El Misterio del Lago', 'Suspenso', 2019, 'PG-13', 110, 12.99, 40),
+('Comedia de Verano', 'Comedia', 2021, 'PG', 95, 9.99, 60);
+
+INSERT INTO Cliente (Nombre, Apellido, Email, Telefono, Direccion) VALUES
+('Juan', 'Pérez', 'juan.perez@example.com', '123456789', 'Calle Falsa 123, Ciudad'),
+('María', 'González', 'maria.gonzalez@example.com', '987654321', 'Avenida Siempre Viva 456, Ciudad'),
+('Carlos', 'López', 'carlos.lopez@example.com', '456789123', 'Boulevard de los Sueños 789, Ciudad'),
+('Ana', 'Martínez', 'ana.martinez@example.com', '321654987', 'Calle de la Paz 101, Ciudad'),
+('Luis', 'Rodríguez', 'luis.rodriguez@example.com', '654321987', 'Avenida del Sol 202, Ciudad');
+
+INSERT INTO Venta (ClienteID, FechaVenta, MontoTotal, MetodoPago) VALUES
+(1, '2024-11-01', 39.98, 'Tarjeta de Crédito'),
+(2, '2024-11-02', 24.99, 'Efectivo'),
+(3, '2024-11-03', 19.99, 'Tarjeta de Débito'),
+(4, '2024-11-04', 29.98, 'PayPal'),
+(5, '2024-11-05', 9.99, 'Tarjeta de Crédito');
+
+INSERT INTO DetalleVenta (VentaID, PeliculaID, Cantidad, PrecioUnitario) VALUES
+(1, 1, 1, 19.99),
+(1, 2, 1, 19.99),
+(2, 3, 1, 24.99),
+(3, 4, 1, 19.99),
+(4, 5, 2, 14.99),
+(5, 1, 1, 9.99);
