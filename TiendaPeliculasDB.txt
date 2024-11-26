@@ -1,0 +1,44 @@
+DROP DATABASE IF EXISTS TiendaPeliculasDB;  
+CREATE DATABASE TiendaPeliculasDB; 
+USE TiendaPeliculasDB; 
+
+CREATE TABLE Pelicula ( 
+    PeliculaID INT PRIMARY KEY AUTO_INCREMENT, 
+    Titulo VARCHAR(100) NOT NULL, 
+    Genero VARCHAR(50), 
+    AñoLanzamiento YEAR, 
+    Clasificación VARCHAR(10), 
+    Duracion INT, 
+    PrecioVenta DECIMAL(10, 2), 
+    Stock INT NOT NULL 
+); 
+
+CREATE TABLE Cliente ( 
+    ClienteID INT PRIMARY KEY AUTO_INCREMENT, 
+    Nombre VARCHAR(50) NOT NULL, 
+    Apellido VARCHAR(50) NOT NULL, 
+    Email VARCHAR(100), 
+    Telefono VARCHAR(15), 
+    Direccion VARCHAR(255), 
+    FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+); 
+
+CREATE TABLE Venta ( 
+    VentaID INT PRIMARY KEY AUTO_INCREMENT, 
+    ClienteID INT, 
+    FechaVenta DATE NOT NULL, 
+    MontoTotal DECIMAL(10, 2) NOT NULL, 
+    MetodoPago VARCHAR(50), 
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ClienteID) 
+); 
+
+CREATE TABLE DetalleVenta ( 
+    DetalleVentaID INT PRIMARY KEY AUTO_INCREMENT, 
+    VentaID INT, 
+    PeliculaID INT, 
+    Cantidad INT NOT NULL, 
+    PrecioUnitario DECIMAL(10, 2) NOT NULL, 
+    Subtotal DECIMAL(10, 2) GENERATED ALWAYS AS (Cantidad * PrecioUnitario) STORED, 
+    FOREIGN KEY (VentaID) REFERENCES Venta(VentaID), 
+    FOREIGN KEY (PeliculaID) REFERENCES Pelicula(PeliculaID) 
+);
